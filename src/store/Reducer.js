@@ -1,4 +1,4 @@
-/* eslint-disable default-case */
+import * as actionType from './action';
 const initialState =  {
     counter : 0,
     result: []
@@ -7,39 +7,40 @@ const initialState =  {
 const reducer = (state = initialState, action) => {
 
     switch(action.type){
-        case 'INCREMENT':
+        case actionType.INCREMENT:
             return {
                 ...state,
                 counter: state.counter + 1
             }
-    case 'DECREMENT':
+    case actionType.DECREMENT:
         return {
             ...state,
             counter: state.counter - 1
         }
-    case 'ADD_FIVE':
+    case actionType.ADD_FIVE:
         return {
             ...state,
             counter: state.counter + action.val
         }
-    case 'SUB_FIVE':
+    case actionType.SUB_FIVE:
         return {
             ...state,
             counter: state.counter - action.val
         }
-    case 'STORE_RESULT':
+    case actionType.STORE_RESULT:
         return {
             ...state,
             result: state.result.concat({id: new Date(), value: state.counter })
         } 
-     case 'DELETE_RESULT':
+     case actionType.DELETE_RESULT:
      const newArray = state.result.filter(result => result.id !== action.ElementId);
          return {
              ...state,
              result: newArray
          }
+    default: 
+        return state;
     }
-    return state;
 }
 
 export default reducer;
