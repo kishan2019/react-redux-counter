@@ -1,10 +1,9 @@
-import * as actionType from './action';
+import * as actionType from '../action';
 const initialState =  {
-    counter : 0,
-    result: []
+    counter : 0
 }
 
-const reducer = (state = initialState, action) => {
+const counterReducer = (state = initialState, action) => {
 
     switch(action.type){
         case actionType.INCREMENT:
@@ -27,20 +26,9 @@ const reducer = (state = initialState, action) => {
             ...state,
             counter: state.counter - action.val
         }
-    case actionType.STORE_RESULT:
-        return {
-            ...state,
-            result: state.result.concat({id: new Date(), value: state.counter })
-        } 
-     case actionType.DELETE_RESULT:
-     const newArray = state.result.filter(result => result.id !== action.ElementId);
-         return {
-             ...state,
-             result: newArray
-         }
     default: 
         return state;
     }
 }
 
-export default reducer;
+export default counterReducer;
